@@ -87,10 +87,15 @@ fun timeForHalfWay(
     t1: Double, v1: Double,
     t2: Double, v2: Double,
     t3: Double, v3: Double
-): Double = when {
-    t1 * v1 + t2 * v2 < (t1 * v1 + t2 * v2 + t3 * v3) / 2 -> t1 + t2 + ((t1 * v1 + t2 * v2 + t3 * v3) / 2 - v1 * t1 - v2 * t2) / v3
-    t1 * v1 < (t1 * v1 + t2 * v2 + t3 * v3) / 2 -> t1 + ((t1 * v1 + t2 * v2 + t3 * v3) / 2 - v1 * t1) / v2
-    else -> (t1 * v1 + t2 * v2 + t3 * v3) / 2 / v1
+): Double {
+    val HalfWay: Double = (t1 * v1 + t2 * v2 + t3 * v3) / 2
+    val s1: Double = t1 * v1
+    val s2: Double = t2 * v2
+    return when {
+        s1 + s2 < HalfWay -> t1 + t2 + (HalfWay - s1 - s2) / v3
+        s1 < HalfWay -> t1 + (HalfWay - s1) / v2
+        else -> HalfWay / v1
+    }
 }
 
 /**
@@ -130,7 +135,7 @@ fun rookOrBishopThreatens(
 ): Int = when {
     kingX == rookX && kingY + kingX == bishopY + bishopX || kingY == rookY && kingX + kingY == bishopX + bishopY || kingX == rookX && kingY - kingX == bishopY - bishopX || kingY == rookY && kingX - kingY == bishopX - bishopY -> 3
     kingX == rookX || kingY == rookY -> 1
-    kingX + kingY == bishopY + bishopX -> 2
+    kingX + kingY == bishopY + bishopX || kingX - kingY == bishopX - bishopY -> 2
     else -> 0
 }
 
@@ -159,7 +164,7 @@ fun triangleKind(a: Double, b: Double, c: Double): Int = when {
  */
 fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int = when {
     a <= c && b >= d -> d - c
-    a >=c && b <= d && b >= c -> b - a
+    a >= c && b <= d && b >= c -> b - a
     c <= a && d <= b && d >= a -> d - a
     c >= a && b <= d && c <= b -> b - c
     else -> -1
