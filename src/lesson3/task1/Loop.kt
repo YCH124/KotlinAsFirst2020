@@ -2,6 +2,8 @@
 
 package lesson3.task1
 
+import lesson1.task1.sqr
+import java.lang.Math.pow
 import kotlin.math.sqrt
 
 // Урок 3: циклы
@@ -80,7 +82,7 @@ fun digitNumber(n: Int): Int = TODO()
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int = TODO()
+fun fib(n: Int): Int = if (n < 3) 1 else fib (n - 1) + fib (n - 2)
 
 /**
  * Простая (2 балла)
@@ -136,7 +138,7 @@ fun isCoPrime(m: Int, n: Int): Boolean = TODO()
  *
  * Для заданных чисел m и n, m <= n, определить, имеется ли хотя бы один точный квадрат между m и n,
  * то есть, существует ли такое целое k, что m <= k*k <= n.
- * Например, для интервала 21..28 21 <= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
+ * Например, для интервала 21..2 <8 21= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
  */
 fun squareBetweenExists(m: Int, n: Int): Boolean = TODO()
 
@@ -147,7 +149,22 @@ fun squareBetweenExists(m: Int, n: Int): Boolean = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun revert(n: Int): Int = TODO()
+fun revert(n: Int): Int {
+    var result = 0
+    var k = 0
+    var n1 = n
+    while (n1 > 0) {
+        n1 = n1 / 10
+        k = k + 1
+    }
+    n1 = n
+    for  (i in k-1 downTo 0) {
+        result += n1 % 10 * pow(10.0, i.toDouble()).toInt()
+        n1 = n1 / 10
+    }
+    return result
+}
+
 
 /**
  * Средняя (3 балла)
@@ -201,7 +218,26 @@ fun cos(x: Double, eps: Double): Double = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun squareSequenceDigit(n: Int): Int = TODO()
+fun squareSequenceDigit(n: Int): Int {
+    var k = 0
+    val result: Int
+    var i = 1
+    var c: Int
+    do {
+        c = sqr (i)
+        while  (c > 0) {
+            c = c / 10
+            k += 1
+        }
+        i += 1
+    } while (k < n)
+    c = sqr (i - 1)
+    for (j in 1..k - n) {
+        c /= 10
+    }
+    result = c % 10
+    return result
+}
 
 /**
  * Сложная (5 баллов)
@@ -212,4 +248,23 @@ fun squareSequenceDigit(n: Int): Int = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun fibSequenceDigit(n: Int): Int = TODO()
+fun fibSequenceDigit(n: Int): Int {
+    var k = 0
+    val result: Int
+    var i = 1
+    var c: Int
+    do {
+        c = fib (i)
+        while  (c > 0) {
+            c = c / 10
+            k += 1
+        }
+        i += 1
+    } while (k < n)
+    c = fib (i - 1)
+    for (j in 1..k - n) {
+        c /= 10
+    }
+    result = c % 10
+    return result
+}
