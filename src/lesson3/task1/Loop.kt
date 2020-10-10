@@ -82,7 +82,7 @@ fun digitNumber(n: Int): Int = TODO()
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int = if (n < 3) 1 else fib (n - 1) + fib (n - 2)
+fun fib(n: Int): Int = if (n < 3) 1 else fib(n - 1) + fib(n - 2)
 
 /**
  * Простая (2 балла)
@@ -154,13 +154,13 @@ fun revert(n: Int): Int {
     var k = 0
     var n1 = n
     while (n1 > 0) {
-        n1 = n1 / 10
-        k = k + 1
+        n1 /= 10
+        k += 1
     }
     n1 = n
-    for  (i in k-1 downTo 0) {
+    for (i in k-1 downTo 0) {
         result += n1 % 10 * pow(10.0, i.toDouble()).toInt()
-        n1 = n1 / 10
+        n1 /= 10
     }
     return result
 }
@@ -224,14 +224,14 @@ fun squareSequenceDigit(n: Int): Int {
     var i = 1
     var c: Int
     do {
-        c = sqr (i)
-        while  (c > 0) {
-            c = c / 10
+        c = sqr(i)
+        while (c > 0) {
+            c /= 10
             k += 1
         }
         i += 1
     } while (k < n)
-    c = sqr (i - 1)
+    c = sqr(i - 1)
     for (j in 1..k - n) {
         c /= 10
     }
@@ -254,14 +254,14 @@ fun fibSequenceDigit(n: Int): Int {
     var i = 1
     var c: Int
     do {
-        c = fib (i)
-        while  (c > 0) {
-            c = c / 10
+        c = fib(i)
+        while (c > 0) {
+            c /= 10
             k += 1
         }
         i += 1
     } while (k < n)
-    c = fib (i - 1)
+    c = fib(i - 1)
     for (j in 1..k - n) {
         c /= 10
     }
