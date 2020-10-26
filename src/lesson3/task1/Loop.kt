@@ -158,7 +158,7 @@ fun revert(n: Int): Int {
         k += 1
     }
     n1 = n
-    for (i in k-1 downTo 0) {
+    for (i in k - 1 downTo 0) {
         result += n1 % 10 * pow(10.0, i.toDouble()).toInt()
         n1 /= 10
     }
@@ -220,7 +220,6 @@ fun cos(x: Double, eps: Double): Double = TODO()
  */
 fun squareSequenceDigit(n: Int): Int {
     var k = 0
-    val result: Int
     var i = 1
     var c: Int
     do {
@@ -235,8 +234,7 @@ fun squareSequenceDigit(n: Int): Int {
     for (j in 1..k - n) {
         c /= 10
     }
-    result = c % 10
-    return result
+    return c % 10
 }
 
 /**
@@ -250,7 +248,6 @@ fun squareSequenceDigit(n: Int): Int {
  */
 fun fibSequenceDigit(n: Int): Int {
     var k = 0
-    val result: Int
     var i = 1
     var c: Int
     do {
@@ -265,6 +262,5 @@ fun fibSequenceDigit(n: Int): Int {
     for (j in 1..k - n) {
         c /= 10
     }
-    result = c % 10
-    return result
+    return c % 10
 }
