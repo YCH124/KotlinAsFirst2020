@@ -82,7 +82,7 @@ fun digitNumber(n: Int): Int = TODO()
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int = if (n < 3) 1 else fib(n - 1) + fib(n - 2)
+fun fib(n: Int): Int = TODO()
 
 /**
  * Простая (2 балла)
@@ -149,22 +149,7 @@ fun squareBetweenExists(m: Int, n: Int): Boolean = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun revert(n: Int): Int {
-    var result = 0
-    var k = 0
-    var n1 = n
-    while (n1 > 0) {
-        n1 /= 10
-        k += 1
-    }
-    n1 = n
-    for (i in k - 1 downTo 0) {
-        result += n1 % 10 * pow(10.0, i.toDouble()).toInt()
-        n1 /= 10
-    }
-    return result
-}
-
+fun revert(n: Int): Int = TODO()
 
 /**
  * Средняя (3 балла)
@@ -231,10 +216,7 @@ fun squareSequenceDigit(n: Int): Int {
         i += 1
     } while (k < n)
     c = sqr(i - 1)
-    for (j in 1..k - n) {
-        c /= 10
-    }
-    return c % 10
+    return (c / (pow(10.0, (k - n).toDouble())) % 10).toInt()
 }
 
 /**
@@ -247,20 +229,18 @@ fun squareSequenceDigit(n: Int): Int {
  * Использовать операции со строками в этой задаче запрещается.
  */
 fun fibSequenceDigit(n: Int): Int {
+    fun fibonacci(n: Int): Int = if (n < 3) 1 else fibonacci(n - 1) + fibonacci(n - 2)
     var k = 0
     var i = 1
     var c: Int
     do {
-        c = fib(i)
+        c = fibonacci(i)
         while (c > 0) {
             c /= 10
             k += 1
         }
         i += 1
     } while (k < n)
-    c = fib(i - 1)
-    for (j in 1..k - n) {
-        c /= 10
-    }
-    return c % 10
+    c = fibonacci(i - 1)
+    return (c / (pow(10.0, (k - n).toDouble())) % 10).toInt()
 }
