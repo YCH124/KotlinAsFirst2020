@@ -324,6 +324,7 @@ fun russian(n: Int): String {
     )
     var numberDuplicate = n
     var result = ""
+    var k = 0
     val digits = mutableListOf<Int>()
     while (numberDuplicate > 0) {
         digits += numberDuplicate % 10
@@ -389,7 +390,7 @@ fun russian(n: Int): String {
             digits[0] == 8 -> result += thousands[8]
             else -> result += thousands[9]
         }
-        if (digits[1] != 0 || digits[2] != 0 || digits[3] != 0) result += " "
+        result += " "
         digits -= digits[0]
     }
     if (digits.size == 3) {
@@ -435,7 +436,7 @@ fun russian(n: Int): String {
             digits[0] == 8 -> result += tens[7]
             else -> result += tens[8]
         }
-        if ((digits[0] != 0 && digits[0] != 1) && (digits[1] != 0)) result += " "
+        if (digits[0] != 0) result += " "
         digits -= digits[0]
     }
     if (digits.size == 1) {
@@ -451,6 +452,8 @@ fun russian(n: Int): String {
             digits[0] == 8 -> result += ones[7]
             else -> result += ones[8]
         }
+        if (digits[0] != 0) result += " "
     }
-    return result
+    for (char in result) k += 1
+    return result.substring(0, (k - 1))
 }
