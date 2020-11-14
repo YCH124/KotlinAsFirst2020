@@ -111,12 +111,7 @@ fun whichRookThreatens(
     kingX: Int, kingY: Int,
     rookX1: Int, rookY1: Int,
     rookX2: Int, rookY2: Int
-): Int = when {
-    kingX == rookX1 && kingX == rookX2 || kingX == rookX1 && kingY == rookY2 || kingY == rookY1 && kingX == rookX2 || kingY == rookY1 && kingY == rookY2 -> 3
-    kingX == rookX1 || kingY == rookY1 -> 1
-    kingX == rookX2 || kingY == rookY2 -> 2
-    else -> 0
-}
+): Int = TODO()
 
 /**
  * Простая (2 балла)
@@ -132,12 +127,7 @@ fun rookOrBishopThreatens(
     kingX: Int, kingY: Int,
     rookX: Int, rookY: Int,
     bishopX: Int, bishopY: Int
-): Int = when {
-    kingX == rookX && kingY + kingX == bishopY + bishopX || kingY == rookY && kingX + kingY == bishopX + bishopY || kingX == rookX && kingY - kingX == bishopY - bishopX || kingY == rookY && kingX - kingY == bishopX - bishopY -> 3
-    kingX == rookX || kingY == rookY -> 1
-    kingX + kingY == bishopY + bishopX || kingX - kingY == bishopX - bishopY -> 2
-    else -> 0
-}
+): Int = TODO()
 
 /**
  * Простая (2 балла)
@@ -147,12 +137,7 @@ fun rookOrBishopThreatens(
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int = when {
-    c > a + b || a > c + b || b > a + c -> -1
-    a >= b && a >= c && a * a < b * b + c * c || b >= a && b >= c && b * b < a * a + c * c || c >= b && c >= a && c * c < b * b + a * a -> 0
-    a > b && a > c && a * a == b * b + c * c || b > a && b > c && b * b == a * a + c * c || c > b && c > a && c * c == b * b + a * a -> 1
-    else -> 2
-}
+fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
 
 /**
  * Средняя (3 балла)

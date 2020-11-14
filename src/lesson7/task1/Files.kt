@@ -449,6 +449,54 @@ fun printMultiplicationProcess(lhv: Int, rhv: Int, outputName: String) {
  *
  */
 fun printDivisionProcess(lhv: Int, rhv: Int, outputName: String) {
-    TODO()
+    val writer = File(outputName).bufferedWriter()
+    var lhvDuplicate = lhv
+    var rhvDuplicate = rhv
+    var c = 0
+    var k = 0
+    var counter = 0
+    val answer = lhv / rhv
+    var o = 0
+    var subtrahend = 0
+    var subtrahendDuplicate = 0
+    var answerDuplicate = lhv / rhv
+    writer.write(" $lhv | $rhv")
+    writer.newLine()
+    while (lhvDuplicate > 0) {
+        lhvDuplicate /= 10
+        c +=1
+    }
+    lhvDuplicate = lhv
+    while (rhvDuplicate > 0) {
+        rhvDuplicate /= 10
+        k +=1
+    }
+    rhvDuplicate = rhv
+    if (rhv > lhv) {
+        for (i in 1..(c - 2)) writer.write(" ")
+        writer.write("-0   0")
+        writer.newLine()
+        for (i in 0..c) writer.write("-")
+        writer.newLine()
+        writer.write(" $lhv")
+    }
+    while (answerDuplicate > 0) {
+        o = answerDuplicate
+        answerDuplicate /=10
+    }
+    subtrahend = o * rhv
+    subtrahendDuplicate = subtrahend
+    while (subtrahendDuplicate > 0) {
+        subtrahendDuplicate /=10
+        counter +=1
+    }
+    writer.write("-$subtrahend")
+    for (i in 1..c-counter) writer.write(" ")
+    writer.write ("   $answer")
+    writer.newLine()
+    writer.write("-")
+    for (i in 1..counter) writer.write("-")
+    writer.newLine()
+    writer.close()
 }
 
