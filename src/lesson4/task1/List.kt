@@ -265,4 +265,192 @@ fun roman(n: Int): String {
  * Например, 375 = "триста семьдесят пять",
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
-fun russian(n: Int): String = TODO()
+fun russian(n: Int): String {
+    val ones = listOf(
+        "один",
+        "два",
+        "три",
+        "четыре",
+        "пять",
+        "шесть",
+        "семь",
+        "восемь",
+        "девять"
+    )
+    val specialTens = listOf(
+        "одиннадцать",
+        "двенадцать",
+        "тринадцать",
+        "четырнадцать",
+        "пятнадцать",
+        "шестнадцать",
+        "семнадцать",
+        "восемнадцать",
+        "девятнадцать"
+    )
+    val tens = listOf(
+        "десть",
+        "двадцать",
+        "тридцать",
+        "сорок",
+        "пятьдесят",
+        "шестьдесят",
+        "семьдесят",
+        "восемьдесят",
+        "девяносто"
+    )
+    val hundreds = listOf(
+        "сто",
+        "двести",
+        "триста",
+        "четыреста",
+        "пятьсот",
+        "шестьсот",
+        "семьсот",
+        "восемьсот",
+        "девятьсот"
+    )
+    val thousands = listOf(
+        "тысяч",
+        "одна тысяча",
+        "две тысячи",
+        "три тысячи",
+        "четыре тысячи",
+        "пять тысяч",
+        "шесть тысяч",
+        "семь тысяч",
+        "восемь тысяч",
+        "девять тысяч",
+    )
+    var numberDuplicate = n
+    var result = ""
+    val digits = mutableListOf<Int>()
+    while (numberDuplicate > 0) {
+        digits += numberDuplicate % 10
+        numberDuplicate /= 10
+    }
+    digits.reverse()
+    if (digits.size == 6) {
+        when {
+            digits[0] == 1 -> result += hundreds[0]
+            digits[0] == 2 -> result += hundreds[1]
+            digits[0] == 3 -> result += hundreds[2]
+            digits[0] == 4 -> result += hundreds[3]
+            digits[0] == 5 -> result += hundreds[4]
+            digits[0] == 6 -> result += hundreds[5]
+            digits[0] == 7 -> result += hundreds[6]
+            digits[0] == 8 -> result += hundreds[7]
+            else -> result += hundreds[8]
+        }
+        digits -= digits[0]
+        result += " "
+    }
+    if (digits.size == 5) {
+        when {
+            digits[0] == 0 -> result += ""
+            digits[0] == 1 -> {
+                when {
+                    digits[1] == 0 -> result += tens[0]
+                    digits[1] == 1 -> result += specialTens[0]
+                    digits[1] == 2 -> result += specialTens[1]
+                    digits[1] == 3 -> result += specialTens[2]
+                    digits[1] == 4 -> result += specialTens[3]
+                    digits[1] == 5 -> result += specialTens[4]
+                    digits[1] == 6 -> result += specialTens[5]
+                    digits[1] == 7 -> result += specialTens[6]
+                    digits[1] == 8 -> result += specialTens[7]
+                    else -> result += specialTens[8]
+                }
+                digits -= digits[1]
+                result += " " + thousands[0]
+            }
+            digits[0] == 2 -> result += tens[1]
+            digits[0] == 3 -> result += tens[2]
+            digits[0] == 4 -> result += tens[3]
+            digits[0] == 5 -> result += tens[4]
+            digits[0] == 6 -> result += tens[5]
+            digits[0] == 7 -> result += tens[6]
+            digits[0] == 8 -> result += tens[7]
+            else -> result += tens[8]
+        }
+        if (digits[0] != 0) result += " "
+        digits -= digits[0]
+    }
+    if (digits.size == 4) {
+        when {
+            digits[0] == 0 -> result += thousands[0]
+            digits[0] == 1 -> result += thousands[1]
+            digits[0] == 2 -> result += thousands[2]
+            digits[0] == 3 -> result += thousands[3]
+            digits[0] == 4 -> result += thousands[4]
+            digits[0] == 5 -> result += thousands[5]
+            digits[0] == 6 -> result += thousands[6]
+            digits[0] == 7 -> result += thousands[7]
+            digits[0] == 8 -> result += thousands[8]
+            else -> result += thousands[9]
+        }
+        if (digits[1] != 0 || digits[2] != 0 || digits[3] != 0) result += " "
+        digits -= digits[0]
+    }
+    if (digits.size == 3) {
+        when {
+            digits[0] == 0 -> result += ""
+            digits[0] == 1 -> result += hundreds[0]
+            digits[0] == 2 -> result += hundreds[1]
+            digits[0] == 3 -> result += hundreds[2]
+            digits[0] == 4 -> result += hundreds[3]
+            digits[0] == 5 -> result += hundreds[4]
+            digits[0] == 6 -> result += hundreds[5]
+            digits[0] == 7 -> result += hundreds[6]
+            digits[0] == 8 -> result += hundreds[7]
+            else -> result += hundreds[8]
+        }
+        if (digits[0] != 0) result += " "
+        digits -= digits[0]
+    }
+    if (digits.size == 2) {
+        when {
+            digits[0] == 0 -> result += ""
+            digits[0] == 1 -> {
+                when {
+                    digits[1] == 0 -> result += tens[0]
+                    digits[1] == 1 -> result += specialTens[0]
+                    digits[1] == 2 -> result += specialTens[1]
+                    digits[1] == 3 -> result += specialTens[2]
+                    digits[1] == 4 -> result += specialTens[3]
+                    digits[1] == 5 -> result += specialTens[4]
+                    digits[1] == 6 -> result += specialTens[5]
+                    digits[1] == 7 -> result += specialTens[6]
+                    digits[1] == 8 -> result += specialTens[7]
+                    else -> result += specialTens[8]
+                }
+                digits -= digits[1]
+            }
+            digits[0] == 2 -> result += tens[1]
+            digits[0] == 3 -> result += tens[2]
+            digits[0] == 4 -> result += tens[3]
+            digits[0] == 5 -> result += tens[4]
+            digits[0] == 6 -> result += tens[5]
+            digits[0] == 7 -> result += tens[6]
+            digits[0] == 8 -> result += tens[7]
+            else -> result += tens[8]
+        }
+        if (digits[0] != 0 && digits[0] != 1) result += " "
+        digits -= digits[0]
+    }
+    if (digits.size == 1) {
+        when {
+            digits[0] == 0 -> result += ""
+            digits[0] == 1 -> result += ones[0]
+            digits[0] == 2 -> result += ones[1]
+            digits[0] == 3 -> result += ones[2]
+            digits[0] == 4 -> result += ones[3]
+            digits[0] == 5 -> result += ones[4]
+            digits[0] == 6 -> result += ones[5]
+            digits[0] == 7 -> result += ones[6]
+            digits[0] == 8 -> result += ones[7]
+            else -> result += ones[8]
+        }
+    }
+    return result
+}

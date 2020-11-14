@@ -457,6 +457,7 @@ fun printDivisionProcess(lhv: Int, rhv: Int, outputName: String) {
     var counter = 0
     val answer = lhv / rhv
     var o = 0
+    var l = -1
     var subtrahend = 0
     var subtrahendDuplicate = 0
     var answerDuplicate = lhv / rhv
@@ -490,7 +491,15 @@ fun printDivisionProcess(lhv: Int, rhv: Int, outputName: String) {
         subtrahendDuplicate /=10
         counter +=1
     }
-    writer.write("-$subtrahend")
+    while (lhvDuplicate - subtrahend > 0) {
+        lhvDuplicate /= 10
+        l += 1
+    }
+    if ((c - l) == counter) writer.write("-$subtrahend")
+    else {
+        for (i in 1..l) writer.write (" ")
+        writer.write("-$subtrahend")
+    }
     for (i in 1..c-counter) writer.write(" ")
     writer.write ("   $answer")
     writer.newLine()
