@@ -435,7 +435,7 @@ fun russian(n: Int): String {
             digits[0] == 8 -> result += tens[7]
             else -> result += tens[8]
         }
-        if ((digits[0] != 0 && digits[0] != 1) || (digits[1] != 0)) result += " "
+        if ((digits[0] != 0 && digits[0] != 1) && (digits[1] != 0)) result += " "
         digits -= digits[0]
     }
     if (digits.size == 1) {
