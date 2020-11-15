@@ -92,7 +92,7 @@ fun fib(n: Int): Int {
         fibSecond = fibFirst
         fibFirst = result
     }
-return result
+    return result
 }
 
 /**
