@@ -166,7 +166,22 @@ fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<S
  *   averageStockPrice(listOf("MSFT" to 100.0, "MSFT" to 200.0, "NFLX" to 40.0))
  *     -> mapOf("MSFT" to 150.0, "NFLX" to 40.0)
  */
-fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Double> = TODO()
+fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Double> {
+    val averageStockPrice = mutableMapOf<String, Double>()
+    val stockCount = mutableMapOf<String, Int>()
+    for ((stock, price) in stockPrices) {
+        if (stockCount[stock] == null) {
+            stockCount[stock] = 1
+            averageStockPrice[stock] = price
+        } else {
+            stockCount[stock] = stockCount[stock]!! + 1
+            averageStockPrice[stock] = averageStockPrice[stock]!! + price
+        }
+    }
+    for ((stock, price) in stockCount)
+        averageStockPrice[stock] = averageStockPrice[stock]!! / price
+    return averageStockPrice
+}
 
 /**
  * Средняя (4 балла)
@@ -183,7 +198,25 @@ fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Doub
  *     "печенье"
  *   ) -> "Мария"
  */
-fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): String? = TODO()
+fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): String? {
+    var suitableShop: String? = null
+    var minimalPrice: Double? = null
+    for ((shop, value) in stuff) {
+        if (value.first == kind) {
+            if (suitableShop == null) {
+                suitableShop = shop
+                minimalPrice = value.second
+            } else {
+                if (value.second < minimalPrice!!) {
+                    minimalPrice = value.second
+                    suitableShop = shop
+                }
+            }
+        }
+    }
+    return suitableShop
+}
+
 
 /**
  * Средняя (3 балла)
