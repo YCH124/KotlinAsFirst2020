@@ -3,6 +3,8 @@
 package lesson7.task1
 
 import java.io.File
+import lesson3.task1.digitNumber
+import java.lang.Integer.max
 
 // Урок 7: работа с файлами
 // Урок интегральный, поэтому его задачи имеют сильно увеличенную стоимость
@@ -268,15 +270,15 @@ Suspendisse ~~et elit in enim tempus iaculis~~.
  *
  * Соответствующий выходной файл:
 <html>
-    <body>
-        <p>
-            Lorem ipsum <i>dolor sit amet</i>, consectetur <b>adipiscing</b> elit.
-            Vestibulum lobortis. <s>Est vehicula rutrum <i>suscipit</i></s>, ipsum <s>lib</s>ero <i>placerat <b>tortor</b></i>.
-        </p>
-        <p>
-            Suspendisse <s>et elit in enim tempus iaculis</s>.
-        </p>
-    </body>
+<body>
+<p>
+Lorem ipsum <i>dolor sit amet</i>, consectetur <b>adipiscing</b> elit.
+Vestibulum lobortis. <s>Est vehicula rutrum <i>suscipit</i></s>, ipsum <s>lib</s>ero <i>placerat <b>tortor</b></i>.
+</p>
+<p>
+Suspendisse <s>et elit in enim tempus iaculis</s>.
+</p>
+</body>
 </html>
  *
  * (Отступы и переносы строк в примере добавлены для наглядности, при решении задачи их реализовывать не обязательно)
@@ -319,65 +321,65 @@ fun markdownToHtmlSimple(inputName: String, outputName: String) {
  *
  * Пример входного файла:
 ///////////////////////////////начало файла/////////////////////////////////////////////////////////////////////////////
-* Утка по-пекински
-    * Утка
-    * Соус
-* Салат Оливье
-    1. Мясо
-        * Или колбаса
-    2. Майонез
-    3. Картофель
-    4. Что-то там ещё
-* Помидоры
-* Фрукты
-    1. Бананы
-    23. Яблоки
-        1. Красные
-        2. Зелёные
+ * Утка по-пекински
+ * Утка
+ * Соус
+ * Салат Оливье
+1. Мясо
+ * Или колбаса
+2. Майонез
+3. Картофель
+4. Что-то там ещё
+ * Помидоры
+ * Фрукты
+1. Бананы
+23. Яблоки
+1. Красные
+2. Зелёные
 ///////////////////////////////конец файла//////////////////////////////////////////////////////////////////////////////
  *
  *
  * Соответствующий выходной файл:
 ///////////////////////////////начало файла/////////////////////////////////////////////////////////////////////////////
 <html>
-  <body>
-    <p>
-      <ul>
-        <li>
-          Утка по-пекински
-          <ul>
-            <li>Утка</li>
-            <li>Соус</li>
-          </ul>
-        </li>
-        <li>
-          Салат Оливье
-          <ol>
-            <li>Мясо
-              <ul>
-                <li>Или колбаса</li>
-              </ul>
-            </li>
-            <li>Майонез</li>
-            <li>Картофель</li>
-            <li>Что-то там ещё</li>
-          </ol>
-        </li>
-        <li>Помидоры</li>
-        <li>Фрукты
-          <ol>
-            <li>Бананы</li>
-            <li>Яблоки
-              <ol>
-                <li>Красные</li>
-                <li>Зелёные</li>
-              </ol>
-            </li>
-          </ol>
-        </li>
-      </ul>
-    </p>
-  </body>
+<body>
+<p>
+<ul>
+<li>
+Утка по-пекински
+<ul>
+<li>Утка</li>
+<li>Соус</li>
+</ul>
+</li>
+<li>
+Салат Оливье
+<ol>
+<li>Мясо
+<ul>
+<li>Или колбаса</li>
+</ul>
+</li>
+<li>Майонез</li>
+<li>Картофель</li>
+<li>Что-то там ещё</li>
+</ol>
+</li>
+<li>Помидоры</li>
+<li>Фрукты
+<ol>
+<li>Бананы</li>
+<li>Яблоки
+<ol>
+<li>Красные</li>
+<li>Зелёные</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+</p>
+</body>
 </html>
 ///////////////////////////////конец файла//////////////////////////////////////////////////////////////////////////////
  * (Отступы и переносы строк в примере добавлены для наглядности, при решении задачи их реализовывать не обязательно)
@@ -404,23 +406,23 @@ fun markdownToHtml(inputName: String, outputName: String) {
  * Вывести в выходной файл процесс умножения столбиком числа lhv (> 0) на число rhv (> 0).
  *
  * Пример (для lhv == 19935, rhv == 111):
-   19935
-*    111
+19935
+ *    111
 --------
-   19935
+19935
 + 19935
 +19935
 --------
- 2212785
+2212785
  * Используемые пробелы, отступы и дефисы должны в точности соответствовать примеру.
  * Нули в множителе обрабатывать так же, как и остальные цифры:
-  235
-*  10
+235
+ *  10
 -----
-    0
+0
 +235
 -----
- 2350
+2350
  *
  */
 fun printMultiplicationProcess(lhv: Int, rhv: Int, outputName: String) {
@@ -434,78 +436,65 @@ fun printMultiplicationProcess(lhv: Int, rhv: Int, outputName: String) {
  * Вывести в выходной файл процесс деления столбиком числа lhv (> 0) на число rhv (> 0).
  *
  * Пример (для lhv == 19935, rhv == 22):
-  19935 | 22
- -198     906
+ 19935 | 22
+-198     906
  ----
-    13
-    -0
-    --
-    135
-   -132
-   ----
-      3
+   13
+   -0
+   --
+   135
+  -132
+  ----
+     3
 
  * Используемые пробелы, отступы и дефисы должны в точности соответствовать примеру.
  *
  */
-fun printDivisionProcess(lhv: Int, rhv: Int, outputName: String) {
-    val writer = File(outputName).bufferedWriter()
-    var lhvDuplicate = lhv
-    var rhvDuplicate = rhv
-    var c = 0
-    var k = 0
-    var counter = 0
-    val answer = lhv / rhv
-    var o = 0
-    var l = -1
-    var subtrahend = 0
-    var subtrahendDuplicate = 0
-    var answerDuplicate = lhv / rhv
-    writer.write(" $lhv | $rhv")
-    writer.newLine()
-    while (lhvDuplicate > 0) {
-        lhvDuplicate /= 10
-        c +=1
+fun printDivisionProcess(lhv: Int, rhv: Int, outputName: String): String {
+    fun differenceWriter(lines: MutableList<StringBuilder>, idx: Int, indent: Int, difference: Int) {
+        lines[idx].append("%${indent}s".format(difference))
     }
-    lhvDuplicate = lhv
-    while (rhvDuplicate > 0) {
-        rhvDuplicate /= 10
-        k +=1
-    }
-    rhvDuplicate = rhv
-    if (rhv > lhv) {
-        for (i in 1..(c - 2)) writer.write(" ")
-        writer.write("-0   0")
-        writer.newLine()
-        for (i in 0..c) writer.write("-")
-        writer.newLine()
-        writer.write(" $lhv")
-    }
-    while (answerDuplicate > 0) {
-        o = answerDuplicate
-        answerDuplicate /=10
-    }
-    subtrahend = o * rhv
-    subtrahendDuplicate = subtrahend
-    while (subtrahendDuplicate > 0) {
-        subtrahendDuplicate /=10
-        counter +=1
-    }
-    while (lhvDuplicate - subtrahend > 0) {
-        lhvDuplicate /= 10
-        l += 1
-    }
-    if ((c - l) == counter) writer.write("-$subtrahend")
-    else {
-        for (i in 1..l) writer.write (" ")
-        writer.write("-$subtrahend")
-    }
-    for (i in 1..c-counter) writer.write(" ")
-    writer.write ("   $answer")
-    writer.newLine()
-    writer.write("-")
-    for (i in 1..counter) writer.write("-")
-    writer.newLine()
-    writer.close()
-}
 
+    fun subtrahendWriter(lines: MutableList<StringBuilder>, idx: Int, indent: Int, subtrahend: Int) {
+        lines[idx].append("${" ".repeat(indent - digitNumber(subtrahend) - 1)}-${subtrahend}")
+    }
+
+    fun separatorWriter(lines: MutableList<StringBuilder>, idx: Int, indent: Int, minuend: Int, subtrahend: Int) {
+        val totalLen = max(digitNumber(minuend), digitNumber(subtrahend) + 1)
+        lines[idx].append("${" ".repeat(indent - totalLen)}${"-".repeat(totalLen)}")
+    }
+
+    val writer = File(outputName).bufferedWriter()
+    val Lines = MutableList(3 * digitNumber(lhv / rhv) + 1) { StringBuilder() }
+    Lines[0].append("$lhv")
+    var linesIdx = 1
+    var minuend = 0
+    var idx = 0
+    while (idx < Lines[0].length && minuend < rhv) {
+        minuend = minuend * 10 + (Lines[0][idx++] - '0')
+    }
+    do {
+        val subtrahend = minuend / rhv * rhv
+        if (idx - digitNumber(subtrahend) < 1) {
+            Lines[0].insert(0, " ")
+            idx++
+        }
+        subtrahendWriter(Lines, linesIdx++, idx, subtrahend)
+        separatorWriter(Lines, linesIdx++, idx, minuend, subtrahend)
+        differenceWriter(Lines, linesIdx, idx, minuend - subtrahend)
+        minuend -= subtrahend
+        if (idx < Lines[0].length) {
+            Lines[linesIdx++].append(Lines[0][idx])
+            minuend = minuend * 10 + (Lines[0][idx] - '0')
+        }
+        idx++
+    } while (idx <= Lines[0].length)
+    Lines[1].append("${" ".repeat(Lines[0].length + 3 - Lines[1].length)}${lhv / rhv}")
+    Lines[0].append(" | $rhv")
+    for (line in Lines) {
+        writer.write(line.toString())
+        writer.newLine()
+    }
+    writer.close()
+    return writer.toString()
+}
