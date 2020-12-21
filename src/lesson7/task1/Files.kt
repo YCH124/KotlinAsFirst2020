@@ -90,7 +90,20 @@ fun deleteMarked(inputName: String, outputName: String) {
  * Регистр букв игнорировать, то есть буквы е и Е считать одинаковыми.
  *
  */
-fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> = TODO()
+fun countSubstrings(inputName: String, substrings: List<String>): MutableMap<String, Int> {
+    val substringsWithoutDuplicates = substrings.toSet()
+    val result = mutableMapOf<String, Int>()
+    for (string in substringsWithoutDuplicates) result[string] = 0
+    for (string in substringsWithoutDuplicates)
+        for (lines in File(inputName).readLines().map { it.toLowerCase() }) {
+            var index = lines.indexOf(string.toLowerCase())
+            while (index != -1) {
+                result[string] = result[string]!! + 1
+                index = lines.indexOf(string.toLowerCase(), index + 1)
+            }
+        }
+    return result
+}
 
 
 /**
@@ -449,16 +462,16 @@ fun printMultiplicationProcess(lhv: Int, rhv: Int, outputName: String) {
  * Вывести в выходной файл процесс деления столбиком числа lhv (> 0) на число rhv (> 0).
  *
  * Пример (для lhv == 19935, rhv == 22):
- 19935 | 22
+19935 | 22
 -198     906
- ----
-   13
-   -0
-   --
-   135
-  -132
-  ----
-     3
+----
+13
+-0
+--
+135
+-132
+----
+3
 
  * Используемые пробелы, отступы и дефисы должны в точности соответствовать примеру.
  *
