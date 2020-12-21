@@ -3,7 +3,7 @@
 package lesson7.task1
 
 import java.io.File
-import lesson3.task1.digitNumber
+//import lesson3.task1.digitNumber
 import java.lang.Integer.max
 
 // Урок 7: работа с файлами
@@ -476,6 +476,16 @@ fun printMultiplicationProcess(lhv: Int, rhv: Int, outputName: String) {
  * Используемые пробелы, отступы и дефисы должны в точности соответствовать примеру.
  *
  */
+fun digitNumber(n: Int): Int {
+    var counter = 0
+    var number = n
+    if (n == 0) return 1
+    while (number > 0) {
+        number /= 10
+        counter +=1
+    }
+    return counter
+}
 fun printDivisionProcess(lhv: Int, rhv: Int, outputName: String): String {
     fun differenceWriter(lines: MutableList<StringBuilder>, idx: Int, indent: Int, difference: Int) {
         lines[idx].append("%${indent}s".format(difference))
