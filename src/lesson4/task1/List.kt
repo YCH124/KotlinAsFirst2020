@@ -321,6 +321,7 @@ val thousands = listOf(
     "восемь тысяч",
     "девять тысяч",
 )
+
 fun russian(n: Int): String {
     var numberDuplicate = n
     var result = ""
@@ -332,17 +333,7 @@ fun russian(n: Int): String {
     }
     digits.reverse()
     if (digits.size == 6) {
-        result += when {
-            digits[0] == 1 -> hundreds[0]
-            digits[0] == 2 -> hundreds[1]
-            digits[0] == 3 -> hundreds[2]
-            digits[0] == 4 -> hundreds[3]
-            digits[0] == 5 -> hundreds[4]
-            digits[0] == 6 -> hundreds[5]
-            digits[0] == 7 -> hundreds[6]
-            digits[0] == 8 -> hundreds[7]
-            else -> hundreds[8]
-        }
+        result += hundreds[digits[0] - 1]
         digits -= digits[0]
         result += " "
     }
@@ -352,59 +343,25 @@ fun russian(n: Int): String {
             digits[0] == 1 -> {
                 result += when {
                     digits[1] == 0 -> tens[0]
-                    digits[1] == 1 -> specialTens[0]
-                    digits[1] == 2 -> specialTens[1]
-                    digits[1] == 3 -> specialTens[2]
-                    digits[1] == 4 -> specialTens[3]
-                    digits[1] == 5 -> specialTens[4]
-                    digits[1] == 6 -> specialTens[5]
-                    digits[1] == 7 -> specialTens[6]
-                    digits[1] == 8 -> specialTens[7]
-                    else -> specialTens[8]
+                    else -> specialTens[digits[1] - 1]
                 }
                 digits -= digits[1]
                 result += " " + thousands[0]
             }
-            digits[0] == 2 -> result += tens[1]
-            digits[0] == 3 -> result += tens[2]
-            digits[0] == 4 -> result += tens[3]
-            digits[0] == 5 -> result += tens[4]
-            digits[0] == 6 -> result += tens[5]
-            digits[0] == 7 -> result += tens[6]
-            digits[0] == 8 -> result += tens[7]
-            else -> result += tens[8]
+            else -> result += tens[digits[0] - 1]
         }
         if (digits[0] != 0) result += " "
         digits -= digits[0]
     }
     if (digits.size == 4) {
-        result += when {
-            digits[0] == 0 -> thousands[0]
-            digits[0] == 1 -> thousands[1]
-            digits[0] == 2 -> thousands[2]
-            digits[0] == 3 -> thousands[3]
-            digits[0] == 4 -> thousands[4]
-            digits[0] == 5 -> thousands[5]
-            digits[0] == 6 -> thousands[6]
-            digits[0] == 7 -> thousands[7]
-            digits[0] == 8 -> thousands[8]
-            else -> thousands[9]
-        }
+        result += thousands[digits[0]]
         result += " "
         digits -= digits[0]
     }
     if (digits.size == 3) {
         result += when {
             digits[0] == 0 -> ""
-            digits[0] == 1 -> hundreds[0]
-            digits[0] == 2 -> hundreds[1]
-            digits[0] == 3 -> hundreds[2]
-            digits[0] == 4 -> hundreds[3]
-            digits[0] == 5 -> hundreds[4]
-            digits[0] == 6 -> hundreds[5]
-            digits[0] == 7 -> hundreds[6]
-            digits[0] == 8 -> hundreds[7]
-            else -> hundreds[8]
+            else -> hundreds[digits[0] - 1]
         }
         if (digits[0] != 0) result += " "
         digits -= digits[0]
@@ -415,26 +372,11 @@ fun russian(n: Int): String {
             digits[0] == 1 -> {
                 result += when {
                     digits[1] == 0 -> tens[0]
-                    digits[1] == 1 -> specialTens[0]
-                    digits[1] == 2 -> specialTens[1]
-                    digits[1] == 3 -> specialTens[2]
-                    digits[1] == 4 -> specialTens[3]
-                    digits[1] == 5 -> specialTens[4]
-                    digits[1] == 6 -> specialTens[5]
-                    digits[1] == 7 -> specialTens[6]
-                    digits[1] == 8 -> specialTens[7]
-                    else -> specialTens[8]
+                    else -> specialTens[digits[1] - 1]
                 }
                 digits -= digits[1]
             }
-            digits[0] == 2 -> result += tens[1]
-            digits[0] == 3 -> result += tens[2]
-            digits[0] == 4 -> result += tens[3]
-            digits[0] == 5 -> result += tens[4]
-            digits[0] == 6 -> result += tens[5]
-            digits[0] == 7 -> result += tens[6]
-            digits[0] == 8 -> result += tens[7]
-            else -> result += tens[8]
+            else -> result += tens[digits[0] - 1]
         }
         if (digits[0] != 0) result += " "
         digits -= digits[0]
@@ -442,15 +384,7 @@ fun russian(n: Int): String {
     if (digits.size == 1) {
         result += when {
             digits[0] == 0 -> ""
-            digits[0] == 1 -> ones[0]
-            digits[0] == 2 -> ones[1]
-            digits[0] == 3 -> ones[2]
-            digits[0] == 4 -> ones[3]
-            digits[0] == 5 -> ones[4]
-            digits[0] == 6 -> ones[5]
-            digits[0] == 7 -> ones[6]
-            digits[0] == 8 -> ones[7]
-            else -> ones[8]
+            else -> ones[digits[0] - 1]
         }
         if (digits[0] != 0) result += " "
     }
